@@ -1,4 +1,3 @@
-
 const crypto = require("crypto");
 const input = "100xdevs";
 // Encryption algorithms: "sha256"
@@ -13,5 +12,4 @@ const inputToHash = "596138";
 const hashedInput = crypto1.createHash("sha256").update(inputToHash).digest("hex");
 console.log("Converted Hashed Input 2: ")
 console.log(hashedInput)
-
 
