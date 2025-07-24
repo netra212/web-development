@@ -89,5 +89,26 @@ function callback(){
 
 setTimeoutPromisified(3000).then(callback);
 
+// Create a Promisefied version of fs.readFile, fs.writeFile, cleanFile.
+const fs = require("fs");
+
+function readTheFile(sendTheFileValueHere){
+    // do ur thing, whenever u have the final value, call sendTheFileValueHere
+    fs.readFile("a.txt", "utf-8", function(err, data){
+        sendTheFileValueHere(data);
+    })
+}
+function readFile(){
+    // read the file and return its value. 
+    return new Promise(readTheFile)
+}
+const p = readFile("a.txt");
+function callback(contents){
+    console.log(contents);
+}
+p.then(callback);
+
+
+
 
 
