@@ -50,9 +50,26 @@ console.log(contents);
 // start all 3 tasks together, and wait for them to finish.
 const fs = require("fs");
 
-fs.readFile("a.txt", "utf-8", function(err, arg){
-    console.log("Hello world")
-});
+function afterFileRead(err, data){
+    if(err){
+        console.log("Error Found in reading the file.");
+    }
+    else{
+        console.log("Error not Found in the file.");
+    }
+}
+
+fs.readFile("a.txt", "utf-8", afterFileRead)
+fs.readFile("b.txt", "utf-8", afterFileRead)
+console.log("Done....!");
 
 
+// functional arugment: passsing an function to another function as arugments. 
 
+// setTimeout -> another asynchronous function that executes a certain code after some time. 
+function run(){
+    console.log("I will run after Ls");
+}
+
+setTimeout(run, 10);
+console.log("I will run immediately");
