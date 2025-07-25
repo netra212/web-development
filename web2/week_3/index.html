@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <style src="style.css"></style>
+    <title>To-Do List</title>
+</head>
+
+<body>
+
+    <h4 id="takeClass">Attend Classes</h4>
+    <h4 id="takeBreak">Take a Break</h4>
+    <h4 id="walk">Go on Walk</h4>
+
+    <div id="todo">
+        <input type="text" placeholder="Add your text here..."></input>
+        <button id="addBtn" onclick="addTodo()">Add Todo</button>
+        <button id="updateBtn">Update Todo</button>
+        <button id="deleteBtn">Delete Todo</button>
+    </div>
+    <script>
+        function createTodoList() {
+            const createNewTodo = document.querySelector("input");
+        }
+
+        function updateTodoList() {
+            const takeClass = document.querySelector("h4");
+            takeClass.innerHTML = "Don't take classes.";
+        }
+
+        function deleteTodoList() {
+
+        }
+    </script>
+
+</body>
+
+</html>
