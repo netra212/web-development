@@ -4,55 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM - Advance</title>
-    <style>
-        #todo{
-            background-color: beige;
-            margin: 50px;
-            padding: 10px;
-            font-size: 30px;
-        }
-
-        .element{
-            background-color: beige;
-            margin: 50px;
-            padding: 10px;
-            font-size: 30px;
-        }
-    </style>
 </head>
 <body>
-
-    <div id="todo">
-        <h1>To Do - Application</h1>
-        <h4>1. Attend Class</h4>
-        <h4>2. Go To Gym</h4>
-        <h4>3. Practice Programming</h4>
-        <h4></h4>
-    </div>
-
-    <div class="element">
-        <input type="text" id="input" placeholder="Add text here...!">
-        
-        <button onclick="addText()">Add Text</button>
-        <button onclick="updateText()">Update Text</button>
-        <button onclick="deleteText()">Delete Text</button>
-    </div>
-
-    <script>
-
-        function addText(){
-
-        }
-
-        function updateText(){
-
-        }
-
-        function deleteText(){
-
-        }
-
-    </script>
+    <input type="text"></input>
+    <button onclick="addTodo()">Add todo!</button>
     
+    <script>
+        function addTodo() {
+            // alert("Hi there..");
+            const value = document.querySelector("input").value;
+
+            const spanEl = document.createElement("span");
+            const buttonEl = document.createElement("button");
+            spanEl.innerHTML = value;
+            buttonEl.innerHTML = value;
+
+            ///
+            const divEl = document.createElement("div");
+            divEl.appendChild(spanEl);
+            divEl.appendChild(buttonEl);
+            ///
+
+            document.querySelector("body").appendChild(newTodoDivEl);
+        }
+    </script>
+
 </body>
 </html>

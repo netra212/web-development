@@ -1,38 +1,73 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <style src="style.css"></style>
     <title>To-Do List</title>
 </head>
-
 <body>
+
+    <!-- 
+    There are 5 Popular methods availanle for fetching DOM elements:
+
+        1. querySelector. 
+        2. querySelectorAll. 
+        3. getElementById.
+        4. getElementByClassName. 
+        5. getElementsByClassName. 
+        
+     -->
 
     <h4 id="takeClass">Attend Classes</h4>
     <h4 id="takeBreak">Take a Break</h4>
     <h4 id="walk">Go on Walk</h4>
 
     <div id="todo">
-        <input type="text" placeholder="Add your text here..."></input>
-        <button id="addBtn" onclick="addTodo()">Add Todo</button>
-        <button id="updateBtn">Update Todo</button>
-        <button id="deleteBtn">Delete Todo</button>
+
+        <input type="text" placeholder="Add your text here..." id="input"></input>
+
+        <button id="addBtn" onclick="createTodoList()">Add Todo</button>
+
+        <button id="updateBtn" onclick="updateTodoList()">Update Todo</button>
+
+        <button id="deleteBtn" onclick="deleteTodoList()">Delete Todo</button>
+
+        <button onclick="deleteMe()">Delete Me</button>
+
     </div>
+
     <script>
         function createTodoList() {
-            const createNewTodo = document.querySelector("input");
+            const firstToDo = document.querySelector("h4");
+            const secondToDo = document.querySelectorAll('h4')[1];
+            console.log(firstToDo.innerHTML);
+            console.log(secondToDo.innerHTML);
+
+            // Adding element. 
+            const inputElement = document.getElementById("input");
+            const textNode = document.createElement("div");
+            textNode.innerHTML = inputElements.value;
+            const parentEl = document.getElementById("todos");
+            parentEl.appendChild(textNode);
         }
 
         function updateTodoList() {
-            const takeClass = document.querySelector("h4");
-            takeClass.innerHTML = "Don't take classes.";
+            const firstTodo = document.querySelector("h4");
+            firstTodo.innerHTML = "Don't take classes.";
         }
 
-        function deleteTodoList() {
-
+        function deleteTodoList(index) {
+            const element = document.getElementById("todo" + index);
+            element.parentNode.removeChild(element);
         }
+
+        function deleteMe(){
+            const element = document.querySelector("h4");
+            const parentElement = element.parentNode;
+            parentElement.removeChild(element);
+        }
+
     </script>
 
 </body>
