@@ -55,3 +55,15 @@ const ans1 = arr.filter(function (n) {
 
 console.log(ans1);
 
+// 
+const arrName = ["netra", "yagya", "radhika"];
+
+const filterName = arrName.filter(function (n) {
+    if (n.startsWith("n")) {
+        return true;
+    } else {
+        return false;
+    }
+});
+
+console.log(ans);
