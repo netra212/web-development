@@ -1,7 +1,7 @@
-
 const express = require("express");
 const app = express();
-// Express frameworks is like a chain of middleware. 
+
+// Express frameworks is like a chain of middlewares. 
 
 // Biggest use of the middleware is for authentication, ending request response cycle and also call the next function. 
 // 1. It may or may not change the request object. 
@@ -38,10 +38,22 @@ const app = express();
 
 let requestCount = 0;
 
-function requestIncreaser(req, res) {
+// middleware. 
+function requestIncreaser(req, res, next) {
     requestCount = requestCount + 1;
     console.log("Total number of requests count:- " + requestCount);
+    if(true){
+        res.json({
+            message: "I ended the request early."
+        })
+    }
+    else{
+        // If we did not call the next function then the middleware ended the request-response cycle.
+        next();
+    }
 }
+
+
 
 function realSumHandler(req, res){
 
@@ -52,8 +64,11 @@ function realSumHandler(req, res){
         ans: a + b
     });
 }
-
 app.get("/sum", requestIncreaser, realSumHandler);
+
+// app.use(requestIncreaser) <-- can also be done. 
+
+
 
 function realMultiplier(req, res){
     const a = parseInt(req.query.a);
@@ -63,8 +78,9 @@ function realMultiplier(req, res){
         ans: a * b
     })
 }
-
 app.get("/multiply", requestIncreaser, realMultiplier);
+
+
 
 function realDivider(req, res){
     const a = parseInt(req.query.a);
@@ -74,8 +90,9 @@ function realDivider(req, res){
         ans: a / b
     })
 }
-
 app.get("/divide", requestIncreaser, realDivider);
+
+
 
 function realSubstract(req, res){
 
@@ -86,7 +103,74 @@ function realSubstract(req, res){
         ans: a - b
     })
 }
-
 app.get("/substract", requestIncreaser, realSubstract);
 
-app.listen(3000);
+
+
+// admin endpoint.
+app.get("/admin", function(){
+    res.json({
+        message: "This is the admin."
+    })
+});
+
+// Assignment1.
+// Create a middleware function that logs each incoming request's HTTP method, URL and timestamp to the console. 
+function logsIncReqHtUrTim(req, res, next){
+
+    const timestamp = new Date().toISOString();
+
+    console.log("Method is: ",req.method);
+    console.log(req.originalUrl);
+    console.log(timestamp);
+    next();
+}
+app.get("/logs", logsIncReqHtUrTim, function(req, res){
+    res.json({
+        message: "Logged successfully.",
+        method: req.method,
+        url: req.originalUrl,
+        timestamp: req.timestamp
+    })
+})
+
+// Assignment2.
+// Create a middleware that counts total number of requests sent to a server. Also create an endpoint that exposes it.
+let countNumberRequestServer = 0;
+function countRequestMiddleware(req, res, next){
+    countNumberRequestServer = countNumberRequestServer + 1;
+    next();
+}
+app.use(countNumberRequestServer);
+
+app.get("/countRequest", function(req, res){
+    res.json({
+        message: "Counting the Number of Request to Server",
+        NumberRequest: req.countNumberRequestServer
+    })
+})
+
+
+// Used to parse incoming requests bodies that are formatted as json. This middlewares is essential for handling JSON payloads sent by clients in POST or PUT requests. 
+const loggerMiddleware = require("logger");
+const bodyParser = require("body-parser");
+    
+// Use express.json() middleware to parse JSON bodies
+let middleware = express.json();
+
+app.use(bodyParser.json());
+
+app.post("/sum", function(req, res){
+    console.log(req.body);
+    const a = parseInt(req.body.a);
+    const b = parseInt(req.body.b);
+
+    res.json({
+        message: a + b
+    })
+})
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`🚀 Server is running on http://localhost:${PORT}`);
+});
