@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback and Promises</title>
+</head>
+<body>
+    <!-- callback function: function passed into another function as an argument, which is then invoked inside the outer function to complete an action. -->
+    <div class="firstContainer">
+        <div class="secondContainer">
+        </div>
+    </div>
+
+    <script>
+        // console.log("Netra is a Hacker.");
+        // console.log("Netra is a Hecker.");
+
+        // // 
+        // setTimeout(() => {
+        //     console.log("I am inside settimeout.")
+        // }, 2000);
+
+        // console.log("The End");
+
+        // // Callbacks. 
+        // const fn = () => {
+        //     console.log("Nothing..")
+        // }
+
+        // const callback = (arg, fn) => {
+        //     console.log(arg)
+        // }
+
+        // const loadScript = (src, callback) => {
+        //     let sc = document.createElement("script");
+        //     sc.src = src;
+        //     sc.onload = callback("Netra", fn);
+        //     document.head.append(sc);
+        // }
+
+        // loadScript("https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js",callback);
+
+        // Promises. 
+        console.log("Promises.");
+
+        let prom1 = new Promise((resolve, reject) => {
+
+            let a = Math.random();
+            if (a < 0.5){
+                reject("No random number was not supporting you.");
+            }else{
+                setTimeout(() => {
+                    console.log("Yes, I am done.");
+                    resolve("Netra Kc.");
+                }, 3000)
+            }
+        })
+
+        prom1.then((a)=>{
+            console.log(a)
+        }).catch((err)=> {
+            console.log(err);
+        });
+
+        let prom2 = new Promise((resolve, reject) => {
+            let a = Math.random();
+            if (a < 0.5) {
+                reject("No random number was not supporting you.");
+            } else {
+                setTimeout(() => {
+                    console.log("Yes, I am done.");
+                    resolve("Netra KC 2");
+                }, 3000);
+            }
+        });
+
+        let p3 = Promise.allSettled([prom1, prom2]);
+        p3.then((a) => {
+            console.log(a);
+        }).catch((err) =>{
+            console.log(err)
+        })
+
+
+    </script>
+</body>
+</html>
