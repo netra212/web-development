@@ -1,6 +1,15 @@
+
+
+// slide Links:
+// https://projects.100xdevs.com/tracks/auth-mern/Authentication-6
+
+
 // Authenticatin in Node.js
 const express = require("express");
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = "netralovekiara"; 
 const app = express();
+
 
 // Implementing the middleware.
 app.use(express.json());
@@ -60,8 +69,12 @@ app.post("/sigin", function (req, res) {
     }
 
     if (foundUser) {
-        const token = generateToken();
-        foundUser.token = token;
+        // const token = generateToken();
+        const token = jwt.sign({
+            username: username
+        }, JWT_SECRET); // convert their username over to a jwt. 
+
+        // foundUser.token = token;
         req.json({
             message: token
         })
@@ -75,11 +88,15 @@ app.post("/sigin", function (req, res) {
 
 
 app.get("/me", function (req, res) {
-    const token = req.headers.token;
+    const token = req.headers.token; // jwt token.
+    const decodedInformation = jwt.verify(token, JWT_SECRET); // Converting jwt to username. 
+    const username = decodedInformation.username;
+
     const foundUser = null;
 
     for (let i = 0; i < users.length; i++) {
-        if (users[i].token == token) {
+        // if (users[i].token == token) {
+        if (users[i].username == token) {
             foundUser = users[i];
         }
     }
@@ -96,8 +113,8 @@ app.get("/me", function (req, res) {
     }
 })
 
-
-
+// JWT essentially prevents 1 round trip from the backend server and DB for any user request.
+// cookies and auth headers. 
 app.listen(3004);
 
 
