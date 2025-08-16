@@ -46,6 +46,7 @@ function getData(dataId, getNextData) {
         }
     }, 2000);
 }
+
 // callback hell.
 getData(1, () => {
     console.log("Getting data 2.....");
