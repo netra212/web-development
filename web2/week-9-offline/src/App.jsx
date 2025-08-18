@@ -3,7 +3,9 @@ import { useState } from "react"
 // App Component.
 function App() {
   return (
-    <div>
+    <div style={{ background: "#dfe6e9", height: "100vh"}}>
+      <ToogleMessage></ToogleMessage>
+      <ToogleMessage></ToogleMessage>
       <ToogleMessage></ToogleMessage>
     </div>
   )
@@ -12,18 +14,19 @@ function App() {
 const ToogleMessage = () => {
   // const [isVisible, setIsVisible] = useState(false); // Defining a new state variable. 
 
-  let [isVisible, setIsVisible] = useState();
+  // let [isVisible, setIsVisible] = useState();
+  let [notificationCount, setNotificationCount] = useState(0);
 
-  function toogle() {
-    setIsVisible(!isVisible);
+  function increment() {
+    setNotificationCount(notificationCount + 1);
   }
 
   return (
     <div>
-      <button onClick={toogle}>
-        Toogle Message
+      <button onClick={increment}>
+        Increased Count
       </button>
-      {isVisible && <p>This message is conditionally rendered !</p>}
+      {notificationCount}
     </div>
   );
 };
