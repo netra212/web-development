@@ -15,13 +15,13 @@ function App() {
   ></PostComponent>)
 
   function addPost() {
-    posts.push({
+    setPosts([...posts, {
       name: "netra",
       subtitle: "1000 followers",
       time: "2m ago",
       image: "/Users/user/Desktop/web-development/web2/week-9-offline/src/LinkedIn.png",
       description: "what to know how to win big ? Check out how these folks won $6000 in bounties."
-    })
+    }])
   }
 
   return (
