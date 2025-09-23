@@ -74,3 +74,38 @@ app.post("/", function (req, res) {
 
 app.listen(3000);
 
+let users = {
+    1:{
+        todos: []
+    },
+    2: {
+        todos: []
+    }
+}
+
+let todos = [];
+
+// store the data in a file, foundation for database. 
+// add user logic. 
+app.post("/", function(req, res){
+    // create a random id for the todo. 
+    // extract the todo title from the body.
+    todos.push({
+        title, 
+        id
+    })
+})
+
+app.delete("/", function(req, res){
+    // extract the todo id. 
+    // remove the todo from here. 
+})
+
+app.get("/", function(req, res){
+    res.json({
+        todos
+    })
+})
+
+
+

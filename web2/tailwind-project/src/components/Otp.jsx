@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 
 export function Otp({ number }) {
     const ref = useRef(Array(number).fill(0));
+    
     const [disabled, setDisabled] = useState(false);
 
     return <div className="flex justify-center">

@@ -40,6 +40,13 @@ async function createUser() {
       password: "123123",
       age: 25,
       city: "London",
+      todos: {
+        create: {
+            description: "Go to Gym",
+            title: "Gym",
+            done: false
+        }
+      }
     },
   });
   console.log(user?.password);

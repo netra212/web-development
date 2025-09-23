@@ -1,0 +1,13 @@
+
+Websockets provides a way to establish a persistent, full-duplex communication channel over a single TCP connection between the client (typically a web broowser) and theserver. 
+persistent: consistant connection.
+full-duplex: client can send multiple msg, and browser can also response multiple msg. 
+tcp connection: 
+
+# Why we cannot use the polling or long polling in the Websockets ?
+-> Asking like is there is something new, Is there something new. 
+
+
+
+
+
