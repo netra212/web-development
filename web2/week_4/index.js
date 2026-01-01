@@ -1,11 +1,21 @@
+// Node JS and Runtime.
+/*
+ * Node.js is a open source run-time for the javascript that allows us to execute javascript code on the server side. It's built on Chrome's V8 Javascript engine.
+ * Runtime -> the environment where the javascript code runs or is executed. It could be
+ * 1. on the server.
+ * 2. in the browser.
+ * 3. On a small watch.
+ *
+ *
+ */
 
-// import chalk from 'chalk';
+import chalk from "chalk";
 
-// // const chalk = require('chalk');
+const chalk = require("chalk");
 
-// console.log(chalk.blue('Hello, world!'));
-// console.log(chalk.red.bold('This is an error message'));
-// console.log(chalk.green.underline('This is a success message.'));
+console.log(chalk.blue("Hello, world!"));
+console.log(chalk.red.bold("This is an error message"));
+console.log(chalk.green.underline("This is a success message."));
 
 // const fs = require("fs");
 // const path = require("path");
@@ -21,7 +31,7 @@
 //     }
 // })
 
-// Create a Command Line Interface.: that lets the user specify a file path and 
+// Create a Command Line Interface.: that lets the user specify a file path and
 // const fs = require("fs");
 // const { Command } = require("commander");
 
@@ -47,65 +57,62 @@ const experss = require("express");
 
 const app = experss();
 
-// Define route handlers. 
-app.get("/", function(req, res){
-    res.send("Hello World.");
-})
+// Define route handlers.
+app.get("/", function (req, res) {
+  res.send("Hello World.");
+});
 
 app.get("/asd", function (req, res) {
-    res.send("Hello World from the asda endpoint.");
-})
+  res.send("Hello World from the asda endpoint.");
+});
 
-// Sending json. 
+// Sending json.
 app.post("/", function (req, res) {
-    res.json({
-        "hi": "k xa tmro";
-    });
-})
+  res.json({
+    hi: "k xa tmro",
+  });
+});
 
-// Sending html. 
+// Sending html.
 app.post("/", function (req, res) {
-    res.html("<b>Hi there.</b>");
-})
+  res.html("<b>Hi there.</b>");
+});
 
 app.post("/", function (req, res) {
-    res.send("Hello World from the post end point.");
-})
+  res.send("Hello World from the post end point.");
+});
 
 app.listen(3000);
 
 let users = {
-    1:{
-        todos: []
-    },
-    2: {
-        todos: []
-    }
-}
+  1: {
+    todos: [],
+  },
+  2: {
+    todos: [],
+  },
+};
 
 let todos = [];
 
-// store the data in a file, foundation for database. 
-// add user logic. 
-app.post("/", function(req, res){
-    // create a random id for the todo. 
-    // extract the todo title from the body.
-    todos.push({
-        title, 
-        id
-    })
-})
+// store the data in a file, foundation for database.
+// add user logic.
+app.post("/", function (req, res) {
+  // create a random id for the todo.
+  // extract the todo title from the body.
+  todos.push({
+    title,
+    id,
+  });
+});
 
-app.delete("/", function(req, res){
-    // extract the todo id. 
-    // remove the todo from here. 
-})
+app.delete("/", function (req, res) {
+  // extract the todo id.
+  // remove the todo from here.
+});
 
-app.get("/", function(req, res){
-    res.json({
-        todos
-    })
-})
-
-
-
+app.get("/", function (req, res) {
+  res.json({
+    todos,
+  });
+});
